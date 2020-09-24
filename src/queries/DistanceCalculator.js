@@ -1,4 +1,4 @@
-import MathUtils from "./MathUtils";
+import MathUtils from "./utils/MathUtils";
 import DistanceCache from "./DistanceCache";
 
 const EarthRadius = 6371;

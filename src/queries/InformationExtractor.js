@@ -1,4 +1,4 @@
-import CountryLookup from "./CountryLookup";
+import CountryManager from "./lookups/CountryManager";
 import DistanceCalculator from "./DistanceCalculator";
 
 export default class InformationExtractor {
@@ -8,7 +8,7 @@ export default class InformationExtractor {
 
     constructor(countryList) {
 
-        this._lookup = new CountryLookup(countryList);
+        this._lookup = new CountryManager(countryList);
         this._distanceCalculator = new DistanceCalculator();
     }
 

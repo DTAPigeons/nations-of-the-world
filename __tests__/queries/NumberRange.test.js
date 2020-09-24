@@ -1,4 +1,4 @@
-import NumberRange from "../../src/queries/NumberRange";
+import NumberRange from "../../src/queries/utils/NumberRange";
 
 describe('Number Range', () => {
 

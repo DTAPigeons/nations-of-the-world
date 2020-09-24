@@ -1,4 +1,4 @@
-import NumberRange from "./NumberRange";
+import NumberRange from "../utils/NumberRange";
 
 export class TimezoneLookup {
 

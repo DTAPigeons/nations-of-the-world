@@ -1,4 +1,4 @@
-import CountryLookup from "../../src/queries/CountryLookup";
+import CountryManager from "../../src/queries/lookups/CountryManager";
 
 const dataJson = require('./mockData.json');
 
@@ -6,7 +6,7 @@ describe('Country Lookup', () => {
 
     it('Should return a country by its 3 symbol code', () => {
 
-        const instance = new CountryLookup(dataJson);
+        const instance = new CountryManager(dataJson);
 
         const country = instance.get('BWA');
 

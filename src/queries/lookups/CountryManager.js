@@ -1,8 +1,8 @@
-import Country from "./Country";
+import Country from "../Country";
 import CodeLookup from "./CodeLookup";
 import {TimezoneLookup} from "./TimezoneLookup";
 
-export default class CountryLookup {
+export default class CountryManager {
 
     _countries;
     _codeLookup;
