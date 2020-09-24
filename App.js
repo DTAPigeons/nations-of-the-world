@@ -26,6 +26,7 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Guard } from './scr/components/GuardComponent/GuardComponent';
+import { Root } from "native-base";
 
 const App = () => {
 
@@ -33,11 +34,13 @@ const App = () => {
 
   return (
     <>
+    <Root>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Guard" component={Guard} initialParams={{loggedIn: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
+      </Root>
     </>
   );
 };
