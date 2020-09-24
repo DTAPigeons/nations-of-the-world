@@ -18,4 +18,8 @@ export default class Country {
     get longitude() {
         return this._data['latlng'][1];
     }
+
+    get timezones() {
+        return this._data['timezones'];
+    }
 }

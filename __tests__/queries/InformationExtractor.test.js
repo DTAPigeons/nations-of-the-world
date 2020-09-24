@@ -4,12 +4,21 @@ const dataJson = require('./mockData.json');
 
 describe('Information Extractor', () => {
 
-    it('should find distance between two countries', () => {
+    const instance = new InformationExtractor(dataJson);
 
-        const instance = new InformationExtractor(dataJson);
+    it('should find distance between two countries', () => {
 
         const distance = instance.findDistance('BWA', 'BOL');
 
         expect(distance).toBe(9209.09);
-    })
+    });
+
+    it('should find all countries in a given timezone range', () => {
+
+        const inRange = instance.getInTimezoneRange('UTC-05:00', 'UTC-07:00');
+
+        expect(inRange.length).toBe(28);
+        expect(inRange).toContain('USA');
+        expect(inRange).toContain('BLZ');
+    });
 });
