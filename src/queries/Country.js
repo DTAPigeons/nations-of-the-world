@@ -7,6 +7,10 @@ export default class Country {
         this._data = countryData;
     }
 
+    get name() {
+        return this._data['name'];
+    }
+
     get code3() {
         return this._data['alpha3Code'];
     }

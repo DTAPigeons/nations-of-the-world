@@ -1,5 +1,5 @@
 import MathUtils from "./utils/MathUtils";
-import DistanceCache from "./DistanceCache";
+import DistanceCache from "./structures/DistanceCache";
 
 const EarthRadius = 6371;
 

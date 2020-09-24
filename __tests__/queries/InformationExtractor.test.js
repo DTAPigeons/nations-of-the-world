@@ -21,4 +21,11 @@ describe('Information Extractor', () => {
         expect(inRange).toContain('USA');
         expect(inRange).toContain('BLZ');
     });
+
+    it('should find all countries with names containing the letters', () => {
+
+        const withLetters = instance.getWithLetters('KA');
+
+        expect(withLetters.length).toBe(2);
+    });
 });
