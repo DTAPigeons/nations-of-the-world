@@ -26,7 +26,8 @@ describe('Information Extractor', () => {
 
         const withLetters = instance.getWithLetters('KA');
 
-        console.log(withLetters);
         expect(withLetters.length).toBe(2);
+        expect(withLetters).toContain('Kazakhstan');
+        expect(withLetters).toContain('Sri Lanka');
     });
 });
