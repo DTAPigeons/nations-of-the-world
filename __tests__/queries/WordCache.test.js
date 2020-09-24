@@ -10,7 +10,7 @@ describe('B Tree', () => {
         instance.add('Testor');
         instance.add('Tos');
         instance.add('BBARtso');
-        instance.add('dasdadasdasd233132');
+        instance.add('dasdad     asdasd233132');
         instance.add('12312___2132');
 
         const words = instance.find('to');

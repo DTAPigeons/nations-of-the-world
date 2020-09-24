@@ -1,50 +1,47 @@
 export default class WordCache {
 
-    _treeRoot = {};
+    _cache = {};
 
     constructor() { }
 
     /** Adds a word to the registry. */
     add(word) {
 
-        for (let i = 0; i < word.length - 1; i++) {
+        for (let i = 0; i < word.length; i++) {
 
-            this._addToTree(word.substr(i, 2), word);
+            const letter = word.charAt(i).toLowerCase();
+            if(/\s/.test(letter)) { continue; }
+
+            this._addToCache(letter, word);
+        }
+
+        for(let i = 0; i < word.length - 1; i++) {
+            this._addToCache(word.substr(i, 2).toLowerCase(), word);
         }
     }
 
-    _addToTree(letters, word) {
+    _addToCache(key, word) {
 
-        let currentNode = this._treeRoot;
-
-        for(let i = 0; i < letters.length; i++) {
-
-            const letter = letters.charAt(i).toLowerCase();
-
-            if(!(letter in currentNode)) {
-                currentNode[letter] = {};
-                currentNode[letter]['words'] = [];
-            }
-
-            currentNode[letter]['words'].push(word);
-            currentNode = currentNode[letter];
+        if(!(key in this._cache)) {
+            this._cache[key] = [];
         }
+
+        const cacheArr = this._cache[key];
+
+        if(cacheArr.includes(word)) { return; }
+
+        cacheArr.push(word);
     }
 
     /** Retrieves all words that contain the given letters. */
     find(letters) {
 
-        let currentNode = this._treeRoot;
-        // let words = [];
+        letters = letters.toLowerCase();
 
-        for(let letter of letters) {
-            letter = letter.toLowerCase();
-
-            if(!(letter in currentNode)) { return []; }
-
-            currentNode = currentNode[letter];
+        if(!(letters in this._cache)) {
+            return [];
         }
 
-        return currentNode['words'];
+        return this._cache[letters];
     }
 }

@@ -26,6 +26,7 @@ describe('Information Extractor', () => {
 
         const withLetters = instance.getWithLetters('KA');
 
+        console.log(withLetters);
         expect(withLetters.length).toBe(2);
     });
 });
