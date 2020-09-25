@@ -1,29 +1,37 @@
 import React from 'react';
 import {useState} from 'react';
-import {Container, Header, Content, Form, Item, Input, H1, H2, H3, Text , Button, Card, CardItem} from 'native-base';
+import {Container, Header, Content, Form, Item, Input, H1, H2, H3, Text , Button, Card, CardItem, List, ListItem} from 'native-base';
+import { useDispatch, useSelector } from 'react-redux';
+import { FlatList, View } from 'react-native';
+import {  findTimeZoneRangeAction } from "../../redux/actions/searchActions";
 
 export const TimeZoneRange=()=>{
-    const [firstCountry, setfirstCountry] = useState("");
-    const [secondCountry, secondCountryCountry] = useState("");
+    const [from, setfrom] = useState("");
+    const [to, setto] = useState("");
 
-    const [range, setrange] = useState([]);
+    const range = useSelector(state => state.timeZoneRangeReducer.range);
+    const error = useSelector(state => state.timeZoneRangeReducer.error);
+
+    const dispatch = useDispatch();
 
     const onSubmit = ()=>{
-        setrange([{name:"Macedonia"}, {name: "Sumalia"}, {name: "Azurbaijan"}]);
+        dispatch(findTimeZoneRangeAction(from,to));
     }
 
     const renderRange = ()=>{
-        console.log("range");
-        if(!range && range.length===0){
+        if(!range || range.length===0){
             return
         }
         else{
+            const renderItem = ({item})=>
+                (<View><Text>{item}</Text></View>)
+            ;
             return(
-                <Card>
-                    {range.map((country)=>{
-                        console.log(country.name)
-                        return (<CardItem key={country.name}><Text>{country.name}</Text></CardItem>)})}
-                </Card>
+                <FlatList
+                data = {range}
+                renderItem= {renderItem}
+                keyExtractor = {item=>item}
+                />
             )
         }
     }
@@ -33,12 +41,13 @@ export const TimeZoneRange=()=>{
             <H1>
             Time Zone Range
             </H1>
+            <H2>{error}</H2>
             <Form>
             <Item>
-              <Input placeholder="First Country" value={firstCountry} onChangeText={(text)=>{setfirstCountry(text)}}/>
+              <Input placeholder="From" value={from} onChangeText={(text)=>{setfrom(text)}}/>
             </Item>
             <Item last>
-              <Input placeholder="Second Country" value={secondCountry} onChangeText={(text)=>{secondCountryCountry(text)}}/>
+              <Input placeholder="To" value={to} onChangeText={(text)=>{setto(text)}}/>
             </Item>
             <Button onPress={onSubmit}>
                 <Text>Get Time Zone Range</Text>

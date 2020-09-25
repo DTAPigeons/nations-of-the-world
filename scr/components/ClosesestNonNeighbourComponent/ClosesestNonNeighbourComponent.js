@@ -1,18 +1,22 @@
 import React from 'react';
 import {useState} from 'react';
 import {Container, Header, Content, Form, Item, Input, H1, H2, H3, Text , Button, Toast} from 'native-base';
+import { useDispatch, useSelector } from 'react-redux';
+import { findNearestNonNeighbourAction } from "../../redux/actions/searchActions";
 
 export const ClosesestNonNeighbour=()=>{
     const [country, setcountry] = useState("");
 
-    const [closestCountry, setclosestCountry] = useState("Macedonia");
+    const closestCountry = useSelector(state=>state.nearestReducer.nearest);
+    const error = useSelector(state => state.nearestReducer.error);
+
+
+    const state = useSelector(state => state);
+
+    const dispatch = useDispatch();
 
     const onSubmit = ()=>{
-        Toast.show({
-            text: closestCountry,
-            buttonText: "Okay",
-            position: "bottom"
-        })
+        dispatch(findNearestNonNeighbourAction(country));
     }
 
     return(
@@ -22,6 +26,7 @@ export const ClosesestNonNeighbour=()=>{
             <H1>
             Closesest Neighbour
             </H1>
+            {closestCountry? (<H1>{closestCountry.name}</H1>):(<H2>{error}</H2>)}
             <Form>
             <Item>
               <Input placeholder="Country" value={country} onChangeText={(text)=>{setcountry(text)}}/>

@@ -18,7 +18,7 @@ export default class TimezoneLookup {
 
             if(!(timezone in this._timezones)) { this._timezones[timezone] = []; }
 
-            this._timezones[timezone].push(country.code3);
+            this._timezones[timezone].push(country.name);
         })
     }
 
