@@ -1,7 +1,6 @@
-import WordCache from "../../src/queries/structures/WordCache";
+import WordCache from "../../scr/queries/structures/WordCache";
 
-
-describe('B Tree', () => {
+describe('Word cache', () => {
 
     it('Should retrieve words containing given letters', () => {
 

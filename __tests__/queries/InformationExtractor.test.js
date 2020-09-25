@@ -1,4 +1,4 @@
-import InformationExtractor from "../../src/queries/InformationExtractor";
+import InformationExtractor from "../../scr/queries/InformationExtractor";
 
 const dataJson = require('./mockData.json');
 
