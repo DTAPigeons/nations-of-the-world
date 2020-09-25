@@ -8,9 +8,8 @@ describe('Information Extractor', () => {
 
     it('should find distance between two countries', () => {
 
-        const distance = instance.findDistance('BWA', 'BOL');
-
-        expect(distance).toBe(9209.09);
+        expect(instance.findDistance('BWA', 'BOL')).toBe(9209.09);
+        expect(instance.findDistance('AUS', 'BRB')).toBe(17998.46);
     });
 
     it('should find the nearest non-neighbour for a given country', () => {
