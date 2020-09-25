@@ -13,6 +13,12 @@ describe('Information Extractor', () => {
         expect(distance).toBe(9209.09);
     });
 
+    it('should find the nearest non-neighbour for a given country', () => {
+
+        expect(instance.findNearestNonNeighbour('AND').code3).toEqual('MCO'); // Andorra -> Monaco
+        expect(instance.findNearestNonNeighbour('NZL').code3).toEqual('NFK'); // New Zealand -> Norfolk Island
+    });
+
     it('should find all countries in a given timezone range', () => {
 
         const inRange = instance.getInTimezoneRange('UTC-05:00', 'UTC-07:00');
