@@ -1,4 +1,5 @@
 import NumberRange from "../utils/NumberRange";
+import InvalidArgumentError from "../exceptions/InvalidArgumentError";
 
 export default class TimezoneLookup {
 
@@ -24,6 +25,9 @@ export default class TimezoneLookup {
     /** Returns all countries in a given timezone range. */
     inRange(fromTimezone, toTimezone) {
 
+        this._validateTimezone(fromTimezone);
+        this._validateTimezone(toTimezone);
+
         const range = new NumberRange(
             this._timezoneToNumber(fromTimezone),
             this._timezoneToNumber(toTimezone)
@@ -38,6 +42,13 @@ export default class TimezoneLookup {
         return [].concat(...timezonesInRange.map((timezone) => {
             return this._timezones[timezone];
         }))
+    }
+
+    _validateTimezone(timezone) {
+
+        if(!(/^UTC(?:[+|-][0-1][0-9](?:\:[0-5][0-9])?)?$/.test(timezone))) {
+            throw new InvalidArgumentError(`${timezone} is not a valid timezone format.`);
+        }
     }
 
     _timezoneToNumber(timezone) {
