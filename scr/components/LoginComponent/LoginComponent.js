@@ -3,7 +3,7 @@ import {useState, useContext} from 'react';
 import {Container, Header, Content, Form, Item, Input, Text, Button} from 'native-base';
 import {AppContext} from '../../context/AppContext';
 import { useDispatch, useSelector } from 'react-redux';
-import { logInAction } from '../../redux/actions/autactions';
+import { logInAction } from '../../redux/actions/autActions';
 
 
 export const Login=({navigation, route})=>{
