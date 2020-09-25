@@ -13,9 +13,6 @@ export const Layout =()=>{
 
     return(
         <Container>            
-        <Header>
-        <Title>Nations of the world</Title>
-        </Header>
         <Tab.Navigator>
             <Tab.Screen name="Distance" component={Distance} />
             <Tab.Screen name="ClosesestNeighbour" component={ClosesestNonNeighbour} />

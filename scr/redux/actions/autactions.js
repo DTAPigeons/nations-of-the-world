@@ -1,19 +1,46 @@
 import InformationExtractor from "../../queries/InformationExtractor";
+import { attemptLoggIn } from "../../auth/auth";
 import axios from 'axios';
 
 export function logInAction(){
-    return dispatch => {
-        axios.get('https://restcountries.eu/rest/v2/all').then(res=>{
-            const extractor = new InformationExtractor(res.data);
+    return async dispatch => {
+        const loginSuccess = await attemptLoggIn();
+        if(!loginSuccess){
             dispatch({
                 type: "LOGG_IN_ACTION",
                 payload:{
-                    isLogedin: true,
-                    extractor: extractor
+                    isLogedin: false,
+                    error: "Log in failed",
+                    extractor: undefined
                 }
             });
-          })
-          .catch((error)=>
-          {console.log(error)})
+        }
+        else{
+            axios.get('https://restcountries.eu/rest/v2/all').then(res=>{
+                const extractor = new InformationExtractor(res.data);
+                dispatch({
+                    type: "LOGG_IN_ACTION",
+                    payload:{
+                        isLogedin: true,
+                        error: "",
+                        extractor: extractor
+                    }
+                });
+              })
+              .catch((error)=>
+              {console.log(error)})
+        }
+
+    }
+}
+
+export function logOutAction(){
+    return{
+        type: "LOGG_OUT_ACTION",
+        payload:{
+            isLogedin: false,
+            error: false,
+            extractor: undefined
+        }
     }
 }

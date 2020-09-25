@@ -1,9 +1,10 @@
 import React from 'react';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {Container, Header, Content, Form, Item, Input, H1, H2, H3, Text , Button, Card, CardItem, List, ListItem} from 'native-base';
 import { useDispatch, useSelector } from 'react-redux';
 import { FlatList, View } from 'react-native';
 import {  findTimeZoneRangeAction } from "../../redux/actions/searchActions";
+import { resetTimeZoneRangeAction } from "../../redux/actions/resetActions";
 
 export const TimeZoneRange=()=>{
     const [from, setfrom] = useState("");
@@ -13,6 +14,12 @@ export const TimeZoneRange=()=>{
     const error = useSelector(state => state.timeZoneRangeReducer.error);
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        return () => {
+            dispatch(resetTimeZoneRangeAction());
+        }
+    }, [dispatch])
 
     const onSubmit = ()=>{
         dispatch(findTimeZoneRangeAction(from,to));

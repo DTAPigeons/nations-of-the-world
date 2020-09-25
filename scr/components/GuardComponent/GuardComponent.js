@@ -4,13 +4,19 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {Login} from '../LoginComponent/LoginComponent';
 import {Layout} from '../LayoutComponent/LayoutComponent';
-import {AppContext} from '../../context/AppContext';
 import { useDispatch, useSelector } from 'react-redux';
+import { logOutAction } from "../../redux/actions/autActions";
 
 export const Guard = ({ navigation, route})=>{
 
     const isLogedin =  useSelector(state => state.autReducer.isLogedin);
+    const dispatch = useDispatch();
 
+    useEffect(() => {
+        return () => {
+            dispatch(logOutAction());
+        }
+    }, [])
 
     const Stack = createStackNavigator();
 

@@ -10,6 +10,12 @@ export function nearestReducer(state=initialState, action){
             ...state,
             ...action.payload
         }
+        case "RESET_NEAREST_ACTION":{
+            return{
+                ...state,
+                ...initialState
+            }
+        }
         default: return state
     }
 }

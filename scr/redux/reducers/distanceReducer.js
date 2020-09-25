@@ -12,6 +12,12 @@ export function distanceReducer(state=initialState, action){
             ...state,
             ...action.payload
         }
+        case "RESET_DISTANCE_ACTION":{
+            return{
+                ...state,
+                ...initialState
+            }
+        }
         default: return state
     }
 }

@@ -30,10 +30,9 @@ import { Root } from "native-base";
 
 import { Guard } from './scr/components/GuardComponent/GuardComponent';
 import InformationExtractor from "./scr/queries/InformationExtractor";
-import {AppContext, contex} from './scr/context/AppContext';
 import react from 'react';
 import { Provider } from 'react-redux';
-import { store } from "./scr/redux/srore";
+import { store } from "./scr/redux/store";
 
 const App = () => {
 
@@ -45,7 +44,7 @@ const App = () => {
       <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Guard" component={Guard} initialParams={{loggedIn: false}}/>
+          <Stack.Screen options={{title: "Countries"}} name="Guard" component={Guard} initialParams={{loggedIn: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
       </Provider>

@@ -74,3 +74,30 @@ export function findTimeZoneRangeAction(from, to){
         }
     }
 }
+
+export function findWithCharactersAction(chars){
+    return (dispatch,getState)=>{
+        const state = getState();
+        const type = "FIND_WITH_CHARACTERS_ACTION";
+        try{
+            const result = state.autReducer.extractor.findWithCharacters(chars);
+            dispatch({
+                type: type,
+                payload: {
+                            range: result,
+                            error: ""
+        }
+            })
+        }
+        catch(e){
+            dispatch({
+                type: type,
+                payload: {
+                            range: [],
+                            error: "Invalid Input"
+        }
+            })
+        }
+    }
+}
+
