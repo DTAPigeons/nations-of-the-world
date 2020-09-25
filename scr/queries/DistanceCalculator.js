@@ -23,6 +23,7 @@ export default class DistanceCalculator {
 
     _calculateDistance(from, to) {
 
+        // Convert to radians
         const fromLatitudeRad = MathUtils.degToRad(from.latitude);
         const toLatitudeRad = MathUtils.degToRad(to.latitude);
         const fromLongitudeRad = MathUtils.degToRad(from.longitude);

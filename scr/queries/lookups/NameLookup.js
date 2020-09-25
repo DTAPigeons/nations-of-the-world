@@ -1,4 +1,5 @@
 import WordCache from "../structures/WordCache";
+import InvalidArgumentError from "../exceptions/InvalidArgumentError";
 
 export default class NameLookup {
 
@@ -14,7 +15,12 @@ export default class NameLookup {
     }
 
     /** Retrieves all countries that have the given characters in their names. */
-    withLetters(characters) {
-        return this._wordCache.find(characters);
+    withCharacters(letters) {
+
+        if(letters.length !== 1 && letters.length !== 2) {
+            throw new InvalidArgumentError('Search by characters can only be done with one or two characters.');
+        }
+
+        return this._wordCache.find(letters);
     }
 }

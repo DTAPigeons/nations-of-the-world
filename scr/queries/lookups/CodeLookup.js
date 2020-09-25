@@ -1,3 +1,5 @@
+import InvalidArgumentError from "../exceptions/InvalidArgumentError";
+
 export default class CodeLookup {
 
     _lookup = {};
@@ -10,6 +12,8 @@ export default class CodeLookup {
     }
 
     get(countryCode) {
+        if(!(countryCode in this._lookup)) { throw new InvalidArgumentError(`${countryCode} is not a valid three-letter country code`); }
+
         return this._lookup[countryCode];
     }
 }
