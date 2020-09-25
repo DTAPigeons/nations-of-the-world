@@ -7,6 +7,10 @@ export default class Country {
         this._data = countryData;
     }
 
+    isNeighboursWith(country) {
+        return this._data['borders'].includes(country.code3);
+    }
+
     get name() {
         return this._data['name'];
     }

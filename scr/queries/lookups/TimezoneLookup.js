@@ -1,6 +1,6 @@
 import NumberRange from "../utils/NumberRange";
 
-export class TimezoneLookup {
+export default class TimezoneLookup {
 
     _timezones = {};
 

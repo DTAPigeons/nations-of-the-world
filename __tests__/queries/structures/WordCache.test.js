@@ -1,4 +1,4 @@
-import WordCache from "../../scr/queries/structures/WordCache";
+import WordCache from "../../../scr/queries/structures/WordCache";
 
 describe('Word cache', () => {
 
