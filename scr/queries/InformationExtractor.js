@@ -42,6 +42,7 @@ export default class InformationExtractor {
         )
     }
 
+    /** Finds the country nearest to the given one that is not one of its neighbours. */
     findNearestNonNeighbour(countryCode) {
         return this._nearestLookup.findNearestNonNeighbour(
             this._codeLookup.get(countryCode)
@@ -49,11 +50,12 @@ export default class InformationExtractor {
     }
 
     /** Returns all countries in a given timezone range. */
-    getInTimezoneRange(fromTz, toTz) {
+    findInTimezoneRange(fromTz, toTz) {
         return this._timezoneLookup.inRange(fromTz, toTz);
     }
 
-    getWithLetters(letters) {
-        return this._nameLookup.withLetters(letters);
+    /** Retrieves all countries that have the given characters in their names. */
+    findWithCharacters(letters) {
+        return this._nameLookup.withCharacters(letters);
     }
 }

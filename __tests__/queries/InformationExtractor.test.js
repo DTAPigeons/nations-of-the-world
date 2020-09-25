@@ -21,7 +21,7 @@ describe('Information Extractor', () => {
 
     it('should find all countries in a given timezone range', () => {
 
-        const inRange = instance.getInTimezoneRange('UTC-05:00', 'UTC-07:00');
+        const inRange = instance.findInTimezoneRange('UTC-05:00', 'UTC-07:00');
 
         expect(inRange.length).toBe(28);
         expect(inRange).toContain('USA');
@@ -30,7 +30,7 @@ describe('Information Extractor', () => {
 
     it('should find all countries with names containing the letters', () => {
 
-        const withLetters = instance.getWithLetters('KA');
+        const withLetters = instance.findWithCharacters('KA');
 
         expect(withLetters.length).toBe(2);
         expect(withLetters).toContain('Kazakhstan');
