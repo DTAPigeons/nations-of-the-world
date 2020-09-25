@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState, useContext} from 'react';
-import {Container, Header, Content, Form, Item, Input, Text, Button, H1, H2} from 'native-base';
+import {Container,  Grid, Col, Row, Content, Form, Item, Input, Text, Button, H1, H2} from 'native-base';
 import { useDispatch, useSelector} from 'react-redux';
 import { logInAction } from '../../redux/actions/autActions';
 
@@ -29,10 +29,18 @@ export const Login=({navigation, route})=>{
 
     return(
     <Container>
-        <Header />
         <Content>
-          <H1>Please Log In!</H1>
-          <H2>{error}</H2>
+          <Grid >
+            <Row style={{alignItems: 'center',flexDirection: 'column',backgroundColor: 'powderblue'}}>
+              <Col><H1>Please Log In!</H1></Col>              
+            </Row>
+            {error!=='' || 
+            <Row style={{alignItems: 'center',flexDirection: 'column',backgroundColor: 'red'}}>
+            <Col><H2>{error}</H2></Col>
+            </Row>
+            }
+            
+          </Grid>
           <Form>
             <Item>
               <Input placeholder="Username" value={userName} onChangeText={(text)=>onUserNameChange(text)}/>
