@@ -22,9 +22,9 @@ describe('Information Extractor', () => {
 
         const inRange = instance.findInTimezoneRange('UTC-05:00', 'UTC-07:00');
 
-        expect(inRange.length).toBe(28);
-        expect(inRange).toContain('USA');
-        expect(inRange).toContain('BLZ');
+        expect(inRange.length).toBe(22);
+        expect(inRange).toContain('United States of America');
+        expect(inRange).toContain('Guatemala');
     });
 
     it('should find all countries with names containing the letters', () => {

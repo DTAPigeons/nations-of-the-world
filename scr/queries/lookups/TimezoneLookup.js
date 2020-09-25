@@ -1,5 +1,6 @@
 import NumberRange from "../utils/NumberRange";
 import InvalidArgumentError from "../exceptions/InvalidArgumentError";
+import ArrayUtils from "../utils/ArrayUtils";
 
 export default class TimezoneLookup {
 
@@ -39,9 +40,9 @@ export default class TimezoneLookup {
             return range.contains(this._timezoneToNumber(timezone));
         })
 
-        return [].concat(...timezonesInRange.map((timezone) => {
+        return ArrayUtils.unique([].concat(...timezonesInRange.map((timezone) => {
             return this._timezones[timezone];
-        }))
+        })));
     }
 
     _validateTimezone(timezone) {
