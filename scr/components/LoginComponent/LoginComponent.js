@@ -1,11 +1,16 @@
 import React from 'react';
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import {Container, Header, Content, Form, Item, Input, Text, Button} from 'native-base';
+import {AppContext} from '../../context/AppContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { logInAction } from '../../redux/actions/autactions';
 
 
 export const Login=({navigation, route})=>{
     const [userName, setuserName] = useState("");
     const [password, setpassword] = useState("");
+
+    const dispatch = useDispatch();
     
     const onUserNameChange = (text)=>{
         setuserName(text);
@@ -16,8 +21,9 @@ export const Login=({navigation, route})=>{
     }
 
     const onSubmit = ()=>{
-      route.params.logIn();
-      console.log("login")
+      dispatch(logInAction());
+      
+      
     }
 
     return(

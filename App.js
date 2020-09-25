@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import * as React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -25,8 +25,15 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Guard } from './scr/components/GuardComponent/GuardComponent';
+import axios from 'axios';
 import { Root } from "native-base";
+
+import { Guard } from './scr/components/GuardComponent/GuardComponent';
+import InformationExtractor from "./scr/queries/InformationExtractor";
+import {AppContext, contex} from './scr/context/AppContext';
+import react from 'react';
+import { Provider } from 'react-redux';
+import { store } from "./scr/redux/srore";
 
 const App = () => {
 
@@ -35,11 +42,13 @@ const App = () => {
   return (
     <>
     <Root>
+      <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Guard" component={Guard} initialParams={{loggedIn: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
+      </Provider>
       </Root>
     </>
   );

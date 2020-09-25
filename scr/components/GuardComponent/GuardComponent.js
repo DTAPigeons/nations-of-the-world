@@ -1,24 +1,25 @@
 import React from 'react';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {Login} from '../LoginComponent/LoginComponent';
 import {Layout} from '../LayoutComponent/LayoutComponent';
+import {AppContext} from '../../context/AppContext';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const Guard = ({ navigation, route})=>{
 
-    const [isLogedIn, setisLogedIn] = useState(route.params.loggedIn);
+    const isLogedin =  useSelector(state => state.autReducer.isLogedin);
 
 
     const Stack = createStackNavigator();
 
     const logIn=()=>{
-        setisLogedIn(true);
     }
 
     return (
               <Stack.Navigator>
-              {!isLogedIn? (<Stack.Screen name="Log in" component={Login} initialParams={{logIn:logIn}}/>):(<Stack.Screen name="Home" component={Layout}/>)}
+              {!isLogedin? (<Stack.Screen name="Log in" component={Login} initialParams={{logIn:logIn}}/>):(<Stack.Screen name="Home" component={Layout}/>)}
               </Stack.Navigator> 
 
     )

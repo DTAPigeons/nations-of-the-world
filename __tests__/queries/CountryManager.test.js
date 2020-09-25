@@ -1,4 +1,4 @@
-import CountryManager from "../../src/queries/lookups/CountryManager";
+import CountryManager from "../../scr/queries/lookups/CountryManager";
 
 const dataJson = require('./mockData.json');
 
