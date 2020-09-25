@@ -4,6 +4,10 @@ export default class DistanceCache {
 
     constructor() {}
 
+    clear() {
+        this._cache = {};
+    }
+
     get(from, to) {
         if (!(from in this._cache)) { return null; }
 
@@ -16,6 +20,11 @@ export default class DistanceCache {
 
     set(from, to, value) {
 
+        this._setBetween(from, to, value);
+        this._setBetween(to, from, value);
+    }
+
+    _setBetween(from, to, value) {
         let fromCache;
         if (from in this._cache) {
             fromCache = this._cache[from];

@@ -17,7 +17,6 @@ describe('Nearest Country Lookup', () => {
 
         const result = instance.findNearestNonNeighbour(andorra);
 
-        console.log(result);
-        // const result = instance
+        expect(result.name).toEqual('Monaco');
     });
 });
