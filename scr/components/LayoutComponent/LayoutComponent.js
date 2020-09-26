@@ -6,6 +6,7 @@ import { Distance } from '../DistanceComponent/DistanceComponent';
 import { ClosesestNonNeighbour } from '../ClosesestNonNeighbourComponent/ClosesestNonNeighbourComponent';
 import { TimeZoneRange} from '../TimeZoneRangeComponent/TimeZoneRangeComponent';
 import { SearchCountries } from '../SearchCountriesComponent/SearchCountriesComponent';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export const Layout =()=>{
 
@@ -13,11 +14,21 @@ export const Layout =()=>{
 
     return(
         <Container>            
-        <Tab.Navigator>
+        <Tab.Navigator 
+        screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {  
+              // You can return any component that you like here!
+              return <Ionicons name={"search-circle"} size={size} color={color} />;
+            },
+          })}
+          tabBarOptions={{
+              keyboardHidesTabBar:true
+          }}
+        >
             <Tab.Screen name="Distance" component={Distance} />
-            <Tab.Screen name="ClosesestNeighbour" component={ClosesestNonNeighbour} />
-            <Tab.Screen name="TimeZoneRange" component={TimeZoneRange} />
-            <Tab.Screen name="SearchCountries" component={SearchCountries} />
+            <Tab.Screen name="Closesest" component={ClosesestNonNeighbour} />
+            <Tab.Screen name="Time Zone" component={TimeZoneRange} />
+            <Tab.Screen name="Search" component={SearchCountries} />
         </Tab.Navigator>
         </Container>
     )

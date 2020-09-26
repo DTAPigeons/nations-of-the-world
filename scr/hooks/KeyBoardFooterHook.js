@@ -5,14 +5,21 @@ export function useKeyboarFooter(){
     const [showFooter, setshowFooter] = useState(true);
 
     useEffect(() => {
-        Keyboard.addListener("keyboardWillShow", ()=>{setshowFooter(false)});
-        Keyboard.addListener("keyboardWillHide", ()=>{setshowFooter(true)});
+        Keyboard.addListener("keyboardDidShow",hideOnKeyBoardFooter);
+        Keyboard.addListener("keyboardDidHide", showOnKeyBoardFooter);
         return () => {
-            Keyboard.removeListener("keyboardWillShow", ()=>{
-                LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);setshowFooter(false)});
-            Keyboard.removeListener("keyboardWillHide", ()=>{setshowFooter(true)});
+            Keyboard.addListener("keyboardDidShow");
+            Keyboard.addListener("keyboardDidHide");
         };
-    }, [setshowFooter]);
+    }, [setshowFooter, hideOnKeyBoardFooter, showOnKeyBoardFooter]);
+
+    const hideOnKeyBoardFooter=()=>{
+        setshowFooter(false);
+    }
+
+    const showOnKeyBoardFooter=()=>{
+        setshowFooter(true)
+    }
 
     return showFooter;
 

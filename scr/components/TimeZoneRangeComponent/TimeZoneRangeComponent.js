@@ -2,7 +2,7 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import {Container, Header, Content, Form, Item, Input, H1, H2, H3, Text , Button, Card, CardItem, List, ListItem, Grid, Col, Row, Footer} from 'native-base';
 import { useDispatch, useSelector } from 'react-redux';
-import { FlatList, SafeAreaView, View } from 'react-native';
+import { FlatList, SafeAreaView, Keyboard } from 'react-native';
 import {  findTimeZoneRangeAction } from "../../redux/actions/searchActions";
 import { resetTimeZoneRangeAction } from "../../redux/actions/resetActions";
 import { useButtonTimeOut } from "../../hooks/TimeOutButtonHook";
@@ -16,13 +16,27 @@ export const TimeZoneRange=()=>{
 
     const [isEnabled, timeOutCallBack] = useButtonTimeOut(true, true);
 
+    const [showFooter, setshowFooter] = useState(true);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
+        Keyboard.addListener("keyboardDidShow", hideOnKeyBoardFooter);
+        Keyboard.addListener("keyboardDidHide", showOnKeyBoardFooter);
         return () => {
-            dispatch(resetTimeZoneRangeAction());
-        }
-    }, [dispatch])
+            Keyboard.removeAllListeners("keyboardDidShow");
+            Keyboard.removeAllListeners("keyboardDidHide");
+        };
+    }, [setshowFooter, hideOnKeyBoardFooter, showOnKeyBoardFooter]);
+
+
+    const hideOnKeyBoardFooter=()=>{
+        setshowFooter(false);
+    }
+
+    const showOnKeyBoardFooter=()=>{
+        setshowFooter(true)
+    }
 
     const onSubmit = ()=>{
         if(!isEnabled) {return}
@@ -95,7 +109,7 @@ export const TimeZoneRange=()=>{
                     </Col>
                 </Grid>
             </Content>
-            <Footer style={{height: 270}}>
+            <Footer style={showFooter?{height: 270}:{height: 0}}>
             {renderRange()}
             </Footer>            
         </Container>

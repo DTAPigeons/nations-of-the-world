@@ -6,6 +6,7 @@ import { FlatList, View, SafeAreaView, Keyboard, L } from 'react-native';
 import { findWithCharactersAction } from "../../redux/actions/searchActions";
 import { resetWithCharactersAction } from "../../redux/actions/resetActions";
 import { useButtonTimeOut } from "../../hooks/TimeOutButtonHook";
+import { useKeyboarFooter } from "../../hooks/KeyBoardFooterHook";
 
 export const SearchCountries=()=>{
     const [searchTerm, setsearchTerm] = useState("");
@@ -20,14 +21,22 @@ export const SearchCountries=()=>{
     const dispatch = useDispatch();
 
     useEffect(() => {
-        Keyboard.addListener("keyboardWillShow", ()=>{setshowFooter(false)});
-        Keyboard.addListener("keyboardWillHide", ()=>{setshowFooter(true)});
+        Keyboard.addListener("keyboardDidShow", hideOnKeyBoardFooter);
+        Keyboard.addListener("keyboardDidHide", showOnKeyBoardFooter);
         return () => {
-            Keyboard.removeListener("keyboardWillShow", ()=>{
-                LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);setshowFooter(false)});
-            Keyboard.removeListener("keyboardWillHide", ()=>{setshowFooter(true)});
+            Keyboard.removeAllListeners("keyboardDidShow");
+            Keyboard.removeAllListeners("keyboardDidHide");
         };
-    }, [setshowFooter]);
+    }, [setshowFooter, hideOnKeyBoardFooter, showOnKeyBoardFooter]);
+
+
+    const hideOnKeyBoardFooter=()=>{
+        setshowFooter(false);
+    }
+
+    const showOnKeyBoardFooter=()=>{
+        setshowFooter(true)
+    }
 
     const onSubmit = ()=>{
         if(!isEnabled){return;}
