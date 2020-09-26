@@ -1,10 +1,11 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import {Container, Header, Content, Form, Item, Input, H1, H2, H3, Text , Button, Card, CardItem} from 'native-base';
+import {Container, Footer, Content, Form, Item, Input, H1, H2, H3, Text , Button, Card, CardItem, Grid, Col, Row} from 'native-base';
 import { useDispatch, useSelector } from 'react-redux';
-import { FlatList, View, SafeAreaView } from 'react-native';
+import { FlatList, View, SafeAreaView, Keyboard, L } from 'react-native';
 import { findWithCharactersAction } from "../../redux/actions/searchActions";
 import { resetWithCharactersAction } from "../../redux/actions/resetActions";
+import { useButtonTimeOut } from "../../hooks/TimeOutButtonHook";
 
 export const SearchCountries=()=>{
     const [searchTerm, setsearchTerm] = useState("");
@@ -12,17 +13,25 @@ export const SearchCountries=()=>{
     const range = useSelector(state => state.charecterSearchReducer.range);
     const error = useSelector(state => state.charecterSearchReducer.error);
 
+    const [isEnabled, timeOutCallBack] = useButtonTimeOut(true, true);
+
+    const [showFooter, setshowFooter] = useState(true);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
-        
+        Keyboard.addListener("keyboardWillShow", ()=>{setshowFooter(false)});
+        Keyboard.addListener("keyboardWillHide", ()=>{setshowFooter(true)});
         return () => {
-            dispatch(resetWithCharactersAction());
-            setsearchTerm("");
-        }
-    }, [dispatch])
+            Keyboard.removeListener("keyboardWillShow", ()=>{
+                LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);setshowFooter(false)});
+            Keyboard.removeListener("keyboardWillHide", ()=>{setshowFooter(true)});
+        };
+    }, [setshowFooter]);
 
     const onSubmit = ()=>{
+        if(!isEnabled){return;}
+        timeOutCallBack();
         dispatch(findWithCharactersAction(searchTerm));
     }
 
@@ -32,7 +41,7 @@ export const SearchCountries=()=>{
         }
         else{
             const renderItem = ({item})=>
-                (<View><Text>{item}</Text></View>)
+                (<Card><Text>{item}</Text></Card>)
             ;
             return(
                 <SafeAreaView>
@@ -47,21 +56,53 @@ export const SearchCountries=()=>{
         }
     }
 
+    const renderError = () =>{
+        if(error && error!==''){
+          return (
+          <Row style={{alignItems: 'center',flexDirection: 'column',backgroundColor: 'red'}}>
+          <Col><H2>{error}</H2></Col>
+          </Row>)
+        }
+      }
+
     return(
         <Container>
-            <H1>
-            Search
-            </H1>
-            <H2>{error}</H2>
-            <Form>
-            <Item>
-              <Input placeholder="Search" value={searchTerm} onChangeText={(text)=>{setsearchTerm(text)}}/>
-            </Item>
-            <Button onPress={onSubmit}>
-                <Text>Search</Text>
-            </Button>
-          </Form>
-          {renderRange()}
+            <Content>
+                <Grid>
+                    <Col style={{justifyContent:'center', flexDirection: 'column'}}>
+                    <Row style={{alignItems: 'center',flexDirection: 'column',backgroundColor: 'powderblue'}}>
+                    <H1>
+                    Search
+                    </H1>
+                    </Row>
+                    {renderError()}
+                    <Row style={{alignItems: 'center',flexDirection: 'row', margin:20}}>
+                        <Col>
+                        <Form>
+                        <Item rounded style={{marginBottom:10}}>
+                         <Input
+                          maxLength={2}
+                           placeholder="Search"
+                            value={searchTerm}
+                             onChangeText={(text)=>{setsearchTerm(text)}}/>
+                         </Item>
+                         
+                        </Form>
+                        </Col>
+                    </Row>
+                    <Row style={{alignItems: 'center',flexDirection: 'column', flex:2}}>
+                        <Col>
+                        <Button disabled={!isEnabled} onPress={onSubmit}>
+                        <Text>Search</Text>
+                      </Button>
+                        </Col>
+                    </Row>
+                    </Col>
+                </Grid>
+            </Content>
+            <Footer  style={showFooter? {height: 300} : {height: 30}}>
+            {renderRange()}
+            </Footer>  
         </Container>
     )
 }
