@@ -61,7 +61,7 @@ export const ClosesestNonNeighbour=()=>{
             <Row style={{alignItems: 'center',flexDirection: 'column', marginTop:20, flex:2}}>
                 <Col>
                 <Button disabled={!isEnabled} onPress={onSubmit}>
-                <Text>Get Closesest Non Neighbour</Text>
+                <Text>Get Closest Non-Neighbour</Text>
             </Button>
                 </Col>
             </Row>

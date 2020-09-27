@@ -8,7 +8,7 @@ export const ClosesestNonNeighbourComponentWrapper = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        options={{title: 'Closest Non Neighbour'}}
+        options={{title: 'Closest Non-Neighbour'}}
         name="Closest"
         component={ClosesestNonNeighbour}
       />
