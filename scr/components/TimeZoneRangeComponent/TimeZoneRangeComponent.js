@@ -68,13 +68,13 @@ export const TimeZoneRange=()=>{
                 <Grid>
                     <Col style={{justifyContent:'center', flexDirection: 'column'}}>
                     {renderError()}
-                    <Row style={{alignItems: 'center',flexDirection: 'row', margin:20}}>
+                    <Row style={{alignItems: 'center',flexDirection: 'row', margin:20,  marginBottom:20, marginLeft:5, marginRight:20, marginTop:20}}>
                         <Col>
                         <Form>
-                        <Item rounded style={{marginBottom:10}}>
+                        <Item  style={{marginBottom:10}}>
                         <Input autoCapitalize='characters' maxLength={9} placeholder="From" value={from} onChangeText={(text)=>{setfrom(text)}}/>
                         </Item>
-                        <Item rounded>
+                        <Item >
                         <Input autoCapitalize='characters' maxLength={9} placeholder="To" value={to} onChangeText={(text)=>{setto(text)}}/>
                         </Item>
                         
