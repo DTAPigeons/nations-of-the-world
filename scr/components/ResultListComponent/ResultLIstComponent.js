@@ -4,7 +4,10 @@ import {FlatList, SafeAreaView} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export const ResultListComponent = ({range, headerText}) => {
-  if (!range[0].header && headerText) {
+  if(range.length===0){
+    range.unshift({header: true, text: headerText});
+  }
+  else if (!range[0].header && headerText) {
     range.unshift({header: true, text: headerText});
   }
 

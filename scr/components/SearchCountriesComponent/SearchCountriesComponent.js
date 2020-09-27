@@ -46,8 +46,11 @@ export const SearchCountries=()=>{
     }
 
     const renderRange = ()=>{
-        if(!range || range.length===0){
+        if(!range){
             return
+        }
+        if(range.length===0 && error===""){
+            return(<ResultListComponent range={[]} headerText="Results: "></ResultListComponent>)
         }
         else{
             return(<ResultListComponent range={range} headerText="Results: "></ResultListComponent>)
