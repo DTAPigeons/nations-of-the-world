@@ -27,7 +27,7 @@ export const Login=({navigation, route})=>{
     const onSubmit = ()=>{
       if(!isEnabled){ return }
       timeOutCallBack();
-      dispatch(logInAction());   
+      dispatch(logInAction(userName,password));   
       
     }
 
