@@ -4,7 +4,7 @@ import {Container,  Grid, Col, Row, Content, Form, Item, Input, Text, Button, H1
 import { useDispatch, useSelector} from 'react-redux';
 import { logInAction } from '../../redux/actions/autActions';
 import { useButtonTimeOut } from "../../hooks/TimeOutButtonHook";
-
+import { ErrorComponent } from "../Errors/ErrorComponent";
 
 export const Login=({navigation, route})=>{
     const [userName, setuserName] = useState("");
@@ -35,9 +35,7 @@ export const Login=({navigation, route})=>{
       if(error && error!==''){
         if(!isEnabled){ setReEnable();}
         return (
-        <Row style={{alignItems: 'center',flexDirection: 'column',backgroundColor: 'red'}}>
-        <Col><H2>{error}</H2></Col>
-        </Row>)
+        <ErrorComponent error={error}></ErrorComponent>)
       }
     }
 
@@ -46,14 +44,13 @@ export const Login=({navigation, route})=>{
         <Content>
           <Grid>
             <Col style={{justifyContent:'center', flexDirection: 'column'}}>
-            <Row style={{alignItems: 'center',flexDirection: 'column',backgroundColor: 'powderblue'}}>
-              <Col><H1>Please Log In!</H1></Col>              
+            <Row style={{alignItems: 'center',flexDirection: 'column',backgroundColor: 'powderblue'}}>            
             </Row>
             { renderError()  }
-            <Row style={{alignItems: 'center',flexDirection: 'row', margin:20}}>
+            <Row style={{alignItems: 'center',flexDirection: 'row', marginBottom:20, marginLeft:10, marginRight:20, marginTop:20}}>
             <Col>
             <Form >
-            <Item>
+            <Item style={{marginBottom:20}}>
               <Input placeholder="Username" value={userName} onChangeText={(text)=>onUserNameChange(text)}/>
             </Item>
             <Item>

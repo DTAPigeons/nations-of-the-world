@@ -6,6 +6,8 @@ import { FlatList, SafeAreaView, Keyboard } from 'react-native';
 import {  findTimeZoneRangeAction } from "../../redux/actions/searchActions";
 import { resetTimeZoneRangeAction } from "../../redux/actions/resetActions";
 import { useButtonTimeOut } from "../../hooks/TimeOutButtonHook";
+import { ErrorComponent } from "../Errors/ErrorComponent";
+import { ResultListComponent } from "../ResultListComponent/ResultLIstComponent";
 
 export const TimeZoneRange=()=>{
     const [from, setfrom] = useState("");
@@ -49,29 +51,14 @@ export const TimeZoneRange=()=>{
             return
         }
         else{
-            const renderItem = ({item})=>
-                (<Card><Text>{item}</Text></Card>)
-            ;
-            return(
-                <SafeAreaView>
-                <FlatList
-                data = {range}
-                renderItem= {renderItem}
-                keyExtractor = {item=>item}
-                />
-                </SafeAreaView>
-
-            )
+            return(<ResultListComponent range={range} headerText="Results"></ResultListComponent>);
         }
     }
 
     
     const renderError = () =>{
         if(error && error!==''){
-          return (
-          <Row style={{alignItems: 'center',flexDirection: 'column',backgroundColor: 'red'}}>
-          <Col><H2>{error}</H2></Col>
-          </Row>)
+          return (<ErrorComponent error={error}></ErrorComponent>);
         }
       }
 
@@ -80,11 +67,6 @@ export const TimeZoneRange=()=>{
             <Content>
                 <Grid>
                     <Col style={{justifyContent:'center', flexDirection: 'column'}}>
-                    <Row style={{alignItems: 'center',flexDirection: 'column',backgroundColor: 'powderblue'}}>
-                    <H1>
-                    Time Zone Range
-                    </H1>
-                    </Row>
                     {renderError()}
                     <Row style={{alignItems: 'center',flexDirection: 'row', margin:20}}>
                         <Col>
@@ -109,7 +91,7 @@ export const TimeZoneRange=()=>{
                     </Col>
                 </Grid>
             </Content>
-            <Footer style={showFooter?{height: 270}:{height: 0}}>
+            <Footer style={showFooter?{height: 250, backgroundColor:"white"}:{height: 0}}>
             {renderRange()}
             </Footer>            
         </Container>

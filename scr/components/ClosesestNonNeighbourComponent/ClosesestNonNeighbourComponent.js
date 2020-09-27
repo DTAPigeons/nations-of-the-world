@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { findNearestNonNeighbourAction } from "../../redux/actions/searchActions";
 import { resetNearestNonNeighbourAction } from "../../redux/actions/resetActions";
 import { useButtonTimeOut } from "../../hooks/TimeOutButtonHook";
+import { ErrorComponent } from "../Errors/ErrorComponent";
 
 export const ClosesestNonNeighbour=()=>{
     const [country, setcountry] = useState("");
@@ -32,10 +33,7 @@ export const ClosesestNonNeighbour=()=>{
 
     const renderError = () =>{
         if(error && error!==''){
-          return (
-          <Row style={{alignItems: 'center',flexDirection: 'column',backgroundColor: 'red'}}>
-          <Col><H2>{error}</H2></Col>
-          </Row>)
+          return (<ErrorComponent error={error}></ErrorComponent>)
         }
       }
 
@@ -44,21 +42,16 @@ export const ClosesestNonNeighbour=()=>{
             <Content>
             <Grid>
             <Col style={{justifyContent:'center', flexDirection: 'column'}}>
-            <Row style={{alignItems: 'center',flexDirection: 'column',backgroundColor: 'powderblue'}}>
-            <H1>
-            Closesest Neighbour
-            </H1>
-            </Row>
             {renderError()}
             <Row Row style={{alignItems: 'center',flexDirection: 'column', margin:10, flex:4}}>
             <Card style={{minWidth:200, minHeight:35}}>
                 {!closestCountry || <H1 style={{textAlign:"center"}}>{closestCountry.name}</H1>}
             </Card>
             </Row>
-            <Row style={{alignItems: 'center',flexDirection: 'row', margin:20}}>
+            <Row style={{alignItems: 'center',flexDirection: 'row',  marginBottom:20, marginLeft:5, marginRight:20, marginTop:20}}>
                 <Col>
                 <Form>
-            <Item rounded>
+            <Item >
               <Input autoCapitalize='characters' maxLength={3} placeholder="Country" value={country} onChangeText={(text)=>{setcountry(text)}}/>
             </Item>
 

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { findDistanceAction } from "../../redux/actions/searchActions";
 import { resetDistanceAction } from "../../redux/actions/resetActions";
 import { useButtonTimeOut } from "../../hooks/TimeOutButtonHook";
+import { ErrorComponent } from "../Errors/ErrorComponent";
 
 export const Distance = ()=>{
     const [firstCountry, setfirstCountry] = useState("");
@@ -33,9 +34,7 @@ export const Distance = ()=>{
     const renderError = () =>{
       if(error && error!==''){
         return (
-        <Row style={{alignItems: 'center',flexDirection: 'column',backgroundColor: 'red'}}>
-        <Col><H2>{error}</H2></Col>
-        </Row>)
+        <ErrorComponent error={error}/>)
       }
     }
 
@@ -44,24 +43,19 @@ export const Distance = ()=>{
             <Content>
               <Grid>
               <Col style={{justifyContent:'center', flexDirection: 'column'}}>
-              <Row style={{alignItems: 'center',flexDirection: 'column',backgroundColor: 'powderblue'}}>
-              <H1>
-                Distance 
-              </H1>
-              </Row>
               {renderError()}
               <Row Row style={{alignItems: 'center',flexDirection: 'column', margin:10, flex:4}}>
                 <Card style={{minWidth:150, minHeight:35}}>
                 {!distance || <H1 style={{textAlign:"center"}}>{distance + "KM"}</H1>}                  
                 </Card>
               </Row>
-              <Row style={{alignItems: 'center',flexDirection: 'row', margin:20}}>
+              <Row style={{alignItems: 'center',flexDirection: 'row',  marginBottom:20, marginLeft:5, marginRight:20, marginTop:20}}>
                 <Col>
                 <Form>
-            <Item rounded style={{marginBottom:10}}>
+            <Item style={{marginBottom:20}}>
               <Input autoCapitalize='characters' maxLength={3} placeholder="First Country" value={firstCountry} onChangeText={(text)=>{setfirstCountry(text)}}/>
             </Item>
-            <Item rounded>
+            <Item >
               <Input autoCapitalize='characters' maxLength={3} placeholder="Second Country" value={secondCountry} onChangeText={(text)=>{setSecondCountry(text)}}/>
             </Item>
             </Form>

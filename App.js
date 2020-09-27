@@ -44,7 +44,7 @@ const App = () => {
       <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen options={{title: "Countries"}} name="Guard" component={Guard} initialParams={{loggedIn: false}}/>
+          <Stack.Screen options={{title: "Countries", headerShown:false}} name="Guard" component={Guard} initialParams={{loggedIn: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
       </Provider>

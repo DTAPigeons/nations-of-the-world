@@ -2,11 +2,12 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import {Container, Footer, Content, Form, Item, Input, H1, H2, H3, Text , Button, Card, CardItem, Grid, Col, Row} from 'native-base';
 import { useDispatch, useSelector } from 'react-redux';
-import { FlatList, View, SafeAreaView, Keyboard, L } from 'react-native';
+import { FlatList, View, SafeAreaView, Keyboard } from 'react-native';
 import { findWithCharactersAction } from "../../redux/actions/searchActions";
-import { resetWithCharactersAction } from "../../redux/actions/resetActions";
 import { useButtonTimeOut } from "../../hooks/TimeOutButtonHook";
-import { useKeyboarFooter } from "../../hooks/KeyBoardFooterHook";
+import { ErrorComponent } from "../Errors/ErrorComponent";
+import { ResultListComponent } from "../ResultListComponent/ResultLIstComponent";
+
 
 export const SearchCountries=()=>{
     const [searchTerm, setsearchTerm] = useState("");
@@ -27,7 +28,7 @@ export const SearchCountries=()=>{
             Keyboard.removeAllListeners("keyboardDidShow");
             Keyboard.removeAllListeners("keyboardDidHide");
         };
-    }, [setshowFooter, hideOnKeyBoardFooter, showOnKeyBoardFooter]);
+    }, [setshowFooter, hideOnKeyBoardFooter, showOnKeyBoardFooter, Keyboard]);
 
 
     const hideOnKeyBoardFooter=()=>{
@@ -49,28 +50,14 @@ export const SearchCountries=()=>{
             return
         }
         else{
-            const renderItem = ({item})=>
-                (<Card><Text>{item}</Text></Card>)
-            ;
-            return(
-                <SafeAreaView>
-                <FlatList
-                data = {range}
-                renderItem= {renderItem}
-                keyExtractor = {item=>item}
-                />
-                </SafeAreaView>
-                
-            )
+            return(<ResultListComponent range={range} headerText="Results: "></ResultListComponent>)
         }
     }
 
     const renderError = () =>{
         if(error && error!==''){
           return (
-          <Row style={{alignItems: 'center',flexDirection: 'column',backgroundColor: 'red'}}>
-          <Col><H2>{error}</H2></Col>
-          </Row>)
+          <ErrorComponent error={error}></ErrorComponent>)
         }
       }
 
@@ -79,11 +66,6 @@ export const SearchCountries=()=>{
             <Content>
                 <Grid>
                     <Col style={{justifyContent:'center', flexDirection: 'column'}}>
-                    <Row style={{alignItems: 'center',flexDirection: 'column',backgroundColor: 'powderblue'}}>
-                    <H1>
-                    Search
-                    </H1>
-                    </Row>
                     {renderError()}
                     <Row style={{alignItems: 'center',flexDirection: 'row', margin:20}}>
                         <Col>
@@ -109,7 +91,7 @@ export const SearchCountries=()=>{
                     </Col>
                 </Grid>
             </Content>
-            <Footer  style={showFooter? {height: 300} : {height: 30}}>
+            <Footer  style={showFooter? {height: 300, backgroundColor:"white" } : {height: 0}}>
             {renderRange()}
             </Footer>  
         </Container>

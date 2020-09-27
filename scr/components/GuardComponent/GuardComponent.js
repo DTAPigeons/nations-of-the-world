@@ -25,7 +25,7 @@ export const Guard = ({ navigation, route})=>{
 
     return (
               <Stack.Navigator>
-              {!isLogedin? (<Stack.Screen name="Log in" component={Login} initialParams={{logIn:logIn}}/>):(<Stack.Screen name="Home" component={Layout}/>)}
+              {!isLogedin? (<Stack.Screen options={{title:"Log in"}} name="Log in" component={Login} initialParams={{logIn:logIn}}/>):(<Stack.Screen options={{headerShown:false}} name="Home" component={Layout}/>)}
               </Stack.Navigator> 
 
     )
