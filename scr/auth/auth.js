@@ -1,25 +1,24 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
-export async function attemptLoggIn(userName, password) {
+export async function attemptLogIn(userName, password) {
 
-
-    let attempsString = await AsyncStorage.getItem('loggins');
-    if (attempsString === null) {
-        await AsyncStorage.setItem('loggins', '1');
+    let attemptsString = await AsyncStorage.getItem('logins');
+    if (attemptsString === null) {
+        await AsyncStorage.setItem('logins', '1');
         return checkCredentials(userName, password);
     }
 
-    let attemps = parseInt(attempsString);
+    let attempts = parseInt(attemptsString);
 
-    console.log(attemps);
+    console.log(attempts);
 
-    if (!attemps || attemps >= 3) {
-        AsyncStorage.setItem('loggins', '1');
+    if (!attempts || attempts >= 3) {
+        AsyncStorage.setItem('logins', '1');
         return false;
     }
 
-    attemps++;
-    AsyncStorage.setItem('loggins', attemps.toString());
+    attempts++;
+    AsyncStorage.setItem('logins', attempts.toString());
     return checkCredentials(userName, password);
 
 }

@@ -1,10 +1,10 @@
 import InformationExtractor from "../../queries/InformationExtractor";
-import {attemptLoggIn} from "../../auth/auth";
+import {attemptLogIn} from "../../auth/auth";
 import axios from 'axios';
 
 export function logInAction(userName, password) {
     return async dispatch => {
-        const loginSuccess = await attemptLoggIn(userName, password);
+        const loginSuccess = await attemptLogIn(userName, password);
         if (!loginSuccess) {
             dispatch({
                 type: "LOGG_IN_ACTION",
