@@ -1,13 +1,13 @@
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import thunk from 'redux-thunk';
-import {autReducer} from './reducers/autReducer';
+import {authReducer} from './reducers/authReducer';
 import {distanceReducer} from "./reducers/distanceReducer";
 import {nearestReducer} from './reducers/nearestReducer';
 import {timeZoneRangeReducer} from "./reducers/timeZoneRangeReducer";
 import {charecterSearchReducer} from "./reducers/characterSearchReducer";
 
 const reducer = combineReducers({
-    autReducer,
+    authReducer,
     distanceReducer,
     nearestReducer,
     timeZoneRangeReducer,

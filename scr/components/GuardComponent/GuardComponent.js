@@ -9,7 +9,7 @@ import {logOutAction} from "../../redux/actions/autActions";
 
 export const Guard = ({navigation, route}) => {
 
-    const isLogedin = useSelector(state => state.autReducer.isLogedin);
+    const isLogedin = useSelector(state => state.authReducer.isLogedin);
     const dispatch = useDispatch();
 
     useEffect(() => {

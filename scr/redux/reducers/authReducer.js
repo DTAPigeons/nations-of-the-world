@@ -4,11 +4,11 @@ const initialState = {
     extractor: {}
 }
 
-export function autReducer(state = initialState, action) {
+export function authReducer(state = initialState, action) {
     switch (action.type) {
-        case "LOGG_IN_ACTION":
+        case "LOG_IN_ACTION":
             return {...state, ...action.payload};
-        case "LOGG_OUT_ACTION":
+        case "LOG_OUT_ACTION":
             return {...state, ...initialState}
         default:
             return state;

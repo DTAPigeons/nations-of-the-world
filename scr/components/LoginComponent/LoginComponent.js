@@ -12,7 +12,7 @@ export const Login = ({navigation, route}) => {
 
     const [isEnabled, timeOutCallBack, setReEnable] = useButtonTimeOut(true, false);
 
-    const error = useSelector(state => state.autReducer.error);
+    const error = useSelector(state => state.authReducer.error);
 
     const dispatch = useDispatch();
 

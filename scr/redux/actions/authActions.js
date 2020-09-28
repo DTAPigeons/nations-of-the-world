@@ -7,7 +7,7 @@ export function logInAction(userName, password) {
         const loginSuccess = await attemptLogIn(userName, password);
         if (!loginSuccess) {
             dispatch({
-                type: "LOGG_IN_ACTION",
+                type: "LOG_IN_ACTION",
                 payload: {
                     isLogedin: false,
                     error: "Log in failed",
@@ -19,7 +19,7 @@ export function logInAction(userName, password) {
             axios.get('https://restcountries.eu/rest/v2/all').then(res => {
                 const extractor = new InformationExtractor(res.data);
                 dispatch({
-                    type: "LOGG_IN_ACTION",
+                    type: "LOG_IN_ACTION",
                     payload: {
                         isLogedin: true,
                         error: "",
@@ -35,7 +35,7 @@ export function logInAction(userName, password) {
 
 export function logOutAction() {
     return {
-        type: "LOGG_OUT_ACTION",
+        type: "LOG_OUT_ACTION",
         payload: {
             isLogedin: false,
             error: false,

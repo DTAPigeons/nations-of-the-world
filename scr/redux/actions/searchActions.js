@@ -3,7 +3,7 @@ export function findDistanceAction(from, to) {
         const state = getState();
         const type = "FIND_DISTANCE_ACTION";
         try {
-            const result = state.autReducer.extractor.findDistance(from, to);
+            const result = state.authReducer.extractor.findDistance(from, to);
             dispatch({
                 type: type,
                 payload: {
@@ -28,7 +28,7 @@ export function findNearestNonNeighbourAction(code) {
         const state = getState();
         const type = "FIND_NEAREST_ACTION";
         try {
-            const result = state.autReducer.extractor.findNearestNonNeighbour(code);
+            const result = state.authReducer.extractor.findNearestNonNeighbour(code);
             dispatch({
                 type: type,
                 payload: {
@@ -53,7 +53,7 @@ export function findTimeZoneRangeAction(from, to) {
         const state = getState();
         const type = "FIND_TIME_ZONE_RANGE_ACTION";
         try {
-            const result = state.autReducer.extractor.findInTimezoneRange(from, to);
+            const result = state.authReducer.extractor.findInTimezoneRange(from, to);
             dispatch({
                 type: type,
                 payload: {
@@ -78,7 +78,7 @@ export function findWithCharactersAction(chars) {
         const state = getState();
         const type = "FIND_WITH_CHARACTERS_ACTION";
         try {
-            const result = state.autReducer.extractor.findWithCharacters(chars);
+            const result = state.authReducer.extractor.findWithCharacters(chars);
             dispatch({
                 type: type,
                 payload: {
