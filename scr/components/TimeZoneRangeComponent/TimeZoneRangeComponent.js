@@ -2,29 +2,20 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import {
     Container,
-    Header,
     Content,
     Form,
     Item,
     Input,
-    H1,
-    H2,
-    H3,
     Text,
     Button,
-    Card,
-    CardItem,
-    List,
-    ListItem,
     Grid,
     Col,
     Row,
     Footer
 } from 'native-base';
 import {useDispatch, useSelector} from 'react-redux';
-import {FlatList, SafeAreaView, Keyboard} from 'react-native';
+import {Keyboard} from 'react-native';
 import {findTimeZoneRangeAction} from "../../redux/actions/searchActions";
-import {resetTimeZoneRangeAction} from "../../redux/actions/resetActions";
 import {useButtonTimeOut} from "../../hooks/TimeOutButtonHook";
 import {ErrorComponent} from "../Errors/ErrorComponent";
 import {ResultListComponent} from "../ResultListComponent/ResultLIstComponent";

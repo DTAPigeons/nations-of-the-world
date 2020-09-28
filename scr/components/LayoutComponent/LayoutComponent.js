@@ -1,11 +1,7 @@
 import React from 'react';
-import {Header, Content, Container, Text, Title, Footer} from 'native-base';
-import {NavigationContainer} from '@react-navigation/native';
+import {Container} from 'native-base';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Distance} from '../DistanceComponent/DistanceComponent';
-import {ClosesestNonNeighbour} from '../ClosesestNonNeighbourComponent/ClosesestNonNeighbourComponent';
-import {TimeZoneRange} from '../TimeZoneRangeComponent/TimeZoneRangeComponent';
-import {SearchCountries} from '../SearchCountriesComponent/SearchCountriesComponent';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {DistanceComponentWrapper} from "../DistanceComponent/DistanceComponentWraper";
 import {ClosesestNonNeighbourComponentWrapper} from "../ClosesestNonNeighbourComponent/ClosesestNonNeighbourComponentWrapper";

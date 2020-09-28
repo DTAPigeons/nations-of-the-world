@@ -33,7 +33,7 @@ export const ClosesestNonNeighbour = () => {
 
     const renderError = () => {
         if (error && error !== '') {
-            return (<ErrorComponent error={error}></ErrorComponent>)
+            return (<ErrorComponent error={error}/>)
         }
     }
 

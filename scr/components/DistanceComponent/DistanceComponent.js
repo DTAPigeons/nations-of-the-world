@@ -2,18 +2,14 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import {
     Container,
-    Header,
     Content,
     Form,
     Item,
     Input,
     H1,
-    H2,
-    H3,
     Text,
     Card,
     Button,
-    Toast,
     Grid,
     Col,
     Row

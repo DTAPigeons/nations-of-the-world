@@ -7,19 +7,14 @@ import {
     Form,
     Item,
     Input,
-    H1,
-    H2,
-    H3,
     Text,
     Button,
-    Card,
-    CardItem,
     Grid,
     Col,
     Row
 } from 'native-base';
 import {useDispatch, useSelector} from 'react-redux';
-import {FlatList, View, SafeAreaView, Keyboard} from 'react-native';
+import {Keyboard} from 'react-native';
 import {findWithCharactersAction} from "../../redux/actions/searchActions";
 import {useButtonTimeOut} from "../../hooks/TimeOutButtonHook";
 import {ErrorComponent} from "../Errors/ErrorComponent";

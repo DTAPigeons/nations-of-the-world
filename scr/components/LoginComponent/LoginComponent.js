@@ -1,12 +1,12 @@
 import React from 'react';
-import {useState, useContext} from 'react';
+import {useState} from 'react';
 import {Container, Grid, Col, Row, Content, Form, Item, Input, Text, Button, H1, H2} from 'native-base';
 import {useDispatch, useSelector} from 'react-redux';
 import {logInAction} from '../../redux/actions/autActions';
 import {useButtonTimeOut} from "../../hooks/TimeOutButtonHook";
 import {ErrorComponent} from "../Errors/ErrorComponent";
 
-export const Login = ({navigation, route}) => {
+export const Login = () => {
     const [userName, setuserName] = useState("");
     const [password, setpassword] = useState("");
 
@@ -35,7 +35,7 @@ export const Login = ({navigation, route}) => {
         if (error && error !== '') {
             if (!isEnabled) { setReEnable();}
             return (
-                <ErrorComponent error={error}></ErrorComponent>)
+                <ErrorComponent error={error}/>)
         }
     }
 
@@ -58,11 +58,11 @@ export const Login = ({navigation, route}) => {
                             <Col>
                                 <Form>
                                     <Item style={{marginBottom: 20}}>
-                                        <Input placeholder="Username" value={userName}
+                                        <Input placeholder="Username:admin" value={userName}
                                                onChangeText={(text) => onUserNameChange(text)}/>
                                     </Item>
                                     <Item>
-                                        <Input secureTextEntry placeholder="Password" value={password}
+                                        <Input secureTextEntry placeholder="Password:123" value={password}
                                                onChangeText={(text) => onPasswordChange(text)}/>
                                     </Item>
                                 </Form>
