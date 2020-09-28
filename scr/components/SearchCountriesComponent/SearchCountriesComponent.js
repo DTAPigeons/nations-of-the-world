@@ -20,16 +20,15 @@ import {useButtonTimeOut} from "../../hooks/TimeOutButtonHook";
 import {ErrorComponent} from "../Errors/ErrorComponent";
 import {ResultListComponent} from "../ResultListComponent/ResultLIstComponent";
 
-
 export const SearchCountries = () => {
-    const [searchTerm, setsearchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
 
     const range = useSelector(state => state.charecterSearchReducer.range);
     const error = useSelector(state => state.charecterSearchReducer.error);
 
     const [isEnabled, timeOutCallBack] = useButtonTimeOut(true, true);
 
-    const [showFooter, setshowFooter] = useState(true);
+    const [showFooter, setShowFooter] = useState(true);
 
     const dispatch = useDispatch();
 
@@ -40,15 +39,15 @@ export const SearchCountries = () => {
             Keyboard.removeAllListeners("keyboardDidShow");
             Keyboard.removeAllListeners("keyboardDidHide");
         };
-    }, [setshowFooter, hideOnKeyBoardFooter, showOnKeyBoardFooter, Keyboard]);
+    }, [setShowFooter, hideOnKeyBoardFooter, showOnKeyBoardFooter, Keyboard]);
 
 
     const hideOnKeyBoardFooter = () => {
-        setshowFooter(false);
+        setShowFooter(false);
     }
 
     const showOnKeyBoardFooter = () => {
-        setshowFooter(true)
+        setShowFooter(true)
     }
 
     const onSubmit = () => {
@@ -62,17 +61,17 @@ export const SearchCountries = () => {
             return
         }
         if (range.length === 0 && error === "") {
-            return (<ResultListComponent range={[]} headerText="Results: "></ResultListComponent>)
+            return (<ResultListComponent range={[]} headerText="Results: "/>)
         }
         else {
-            return (<ResultListComponent range={range} headerText="Results: "></ResultListComponent>)
+            return (<ResultListComponent range={range} headerText="Results: "/>)
         }
     }
 
     const renderError = () => {
         if (error && error !== '') {
             return (
-                <ErrorComponent error={error}></ErrorComponent>)
+                <ErrorComponent error={error}/>)
         }
     }
 
@@ -97,7 +96,7 @@ export const SearchCountries = () => {
                                             maxLength={2}
                                             placeholder="Search"
                                             value={searchTerm}
-                                            onChangeText={(text) => {setsearchTerm(text)}}/>
+                                            onChangeText={(text) => {setSearchTerm(text)}}/>
                                     </Item>
 
                                 </Form>

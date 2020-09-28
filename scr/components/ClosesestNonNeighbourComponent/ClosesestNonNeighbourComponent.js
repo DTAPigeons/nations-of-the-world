@@ -8,7 +8,7 @@ import {useButtonTimeOut} from "../../hooks/TimeOutButtonHook";
 import {ErrorComponent} from "../Errors/ErrorComponent";
 
 export const ClosesestNonNeighbour = () => {
-    const [country, setcountry] = useState("");
+    const [country, setCountry] = useState("");
 
     const closestCountry = useSelector(state => state.nearestReducer.nearest);
     const error = useSelector(state => state.nearestReducer.error);
@@ -21,7 +21,7 @@ export const ClosesestNonNeighbour = () => {
     useEffect(() => {
         return () => {
             dispatch(resetNearestNonNeighbourAction());
-            setcountry("");
+            setCountry("");
         }
     }, [dispatch])
 
@@ -60,7 +60,7 @@ export const ClosesestNonNeighbour = () => {
                                 <Form>
                                     <Item>
                                         <Input autoCapitalize='characters' maxLength={3} placeholder="Country"
-                                               value={country} onChangeText={(text) => {setcountry(text)}}/>
+                                               value={country} onChangeText={(text) => {setCountry(text)}}/>
                                     </Item>
 
                                 </Form>
@@ -76,7 +76,6 @@ export const ClosesestNonNeighbour = () => {
                     </Col>
                 </Grid>
             </Content>
-
         </Container>
     )
 }

@@ -21,7 +21,7 @@ import {useButtonTimeOut} from "../../hooks/TimeOutButtonHook";
 import {ErrorComponent} from "../Errors/ErrorComponent";
 
 export const Distance = () => {
-    const [firstCountry, setfirstCountry] = useState("");
+    const [firstCountry, setFirstCountry] = useState("");
     const [secondCountry, setSecondCountry] = useState("");
     const [isEnabled, timeOutCallBack] = useButtonTimeOut(true, true);
 
@@ -33,7 +33,7 @@ export const Distance = () => {
     useEffect(() => {
         return () => {
             dispatch(resetDistanceAction());
-            setfirstCountry("");
+            setFirstCountry("");
             setSecondCountry("");
         }
     }, [dispatch])
@@ -74,7 +74,7 @@ export const Distance = () => {
                                 <Form>
                                     <Item style={{marginBottom: 20}}>
                                         <Input autoCapitalize='characters' maxLength={3} placeholder="First Country"
-                                               value={firstCountry} onChangeText={(text) => {setfirstCountry(text)}}/>
+                                               value={firstCountry} onChangeText={(text) => {setFirstCountry(text)}}/>
                                     </Item>
                                     <Item>
                                         <Input autoCapitalize='characters' maxLength={3} placeholder="Second Country"

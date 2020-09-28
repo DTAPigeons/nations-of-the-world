@@ -21,15 +21,15 @@ import {ErrorComponent} from "../Errors/ErrorComponent";
 import {ResultListComponent} from "../ResultListComponent/ResultLIstComponent";
 
 export const TimeZoneRange = () => {
-    const [from, setfrom] = useState("");
-    const [to, setto] = useState("");
+    const [from, setFrom] = useState("");
+    const [to, setTo] = useState("");
 
     const range = useSelector(state => state.timeZoneRangeReducer.range);
     const error = useSelector(state => state.timeZoneRangeReducer.error);
 
     const [isEnabled, timeOutCallBack] = useButtonTimeOut(true, true);
 
-    const [showFooter, setshowFooter] = useState(true);
+    const [showFooter, setShowFooter] = useState(true);
 
     const dispatch = useDispatch();
 
@@ -40,15 +40,15 @@ export const TimeZoneRange = () => {
             Keyboard.removeAllListeners("keyboardDidShow");
             Keyboard.removeAllListeners("keyboardDidHide");
         };
-    }, [setshowFooter, hideOnKeyBoardFooter, showOnKeyBoardFooter]);
+    }, [setShowFooter, hideOnKeyBoardFooter, showOnKeyBoardFooter]);
 
 
     const hideOnKeyBoardFooter = () => {
-        setshowFooter(false);
+        setShowFooter(false);
     }
 
     const showOnKeyBoardFooter = () => {
-        setshowFooter(true)
+        setShowFooter(true)
     }
 
     const onSubmit = () => {
@@ -59,17 +59,16 @@ export const TimeZoneRange = () => {
 
     const renderRange = () => {
         if (!range || range.length === 0) {
-            return
+            return;
         }
-        else {
-            return (<ResultListComponent range={range} headerText="Results"></ResultListComponent>);
-        }
+
+        return (<ResultListComponent range={range} headerText="Results"/>);
     }
 
 
     const renderError = () => {
         if (error && error !== '') {
-            return (<ErrorComponent error={error}></ErrorComponent>);
+            return (<ErrorComponent error={error}/>);
         }
     }
 
@@ -92,11 +91,11 @@ export const TimeZoneRange = () => {
                                 <Form>
                                     <Item style={{marginBottom: 10}}>
                                         <Input autoCapitalize='characters' maxLength={9} placeholder="From" value={from}
-                                               onChangeText={(text) => {setfrom(text)}}/>
+                                               onChangeText={(text) => {setFrom(text)}}/>
                                     </Item>
                                     <Item>
                                         <Input autoCapitalize='characters' maxLength={9} placeholder="To" value={to}
-                                               onChangeText={(text) => {setto(text)}}/>
+                                               onChangeText={(text) => {setTo(text)}}/>
                                     </Item>
 
                                 </Form>
