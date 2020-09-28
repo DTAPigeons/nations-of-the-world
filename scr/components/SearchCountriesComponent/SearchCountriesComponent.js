@@ -1,15 +1,32 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import {Container, Footer, Content, Form, Item, Input, H1, H2, H3, Text , Button, Card, CardItem, Grid, Col, Row} from 'native-base';
-import { useDispatch, useSelector } from 'react-redux';
-import { FlatList, View, SafeAreaView, Keyboard } from 'react-native';
-import { findWithCharactersAction } from "../../redux/actions/searchActions";
-import { useButtonTimeOut } from "../../hooks/TimeOutButtonHook";
-import { ErrorComponent } from "../Errors/ErrorComponent";
-import { ResultListComponent } from "../ResultListComponent/ResultLIstComponent";
+import {
+    Container,
+    Footer,
+    Content,
+    Form,
+    Item,
+    Input,
+    H1,
+    H2,
+    H3,
+    Text,
+    Button,
+    Card,
+    CardItem,
+    Grid,
+    Col,
+    Row
+} from 'native-base';
+import {useDispatch, useSelector} from 'react-redux';
+import {FlatList, View, SafeAreaView, Keyboard} from 'react-native';
+import {findWithCharactersAction} from "../../redux/actions/searchActions";
+import {useButtonTimeOut} from "../../hooks/TimeOutButtonHook";
+import {ErrorComponent} from "../Errors/ErrorComponent";
+import {ResultListComponent} from "../ResultListComponent/ResultLIstComponent";
 
 
-export const SearchCountries=()=>{
+export const SearchCountries = () => {
     const [searchTerm, setsearchTerm] = useState("");
 
     const range = useSelector(state => state.charecterSearchReducer.range);
@@ -31,72 +48,79 @@ export const SearchCountries=()=>{
     }, [setshowFooter, hideOnKeyBoardFooter, showOnKeyBoardFooter, Keyboard]);
 
 
-    const hideOnKeyBoardFooter=()=>{
+    const hideOnKeyBoardFooter = () => {
         setshowFooter(false);
     }
 
-    const showOnKeyBoardFooter=()=>{
+    const showOnKeyBoardFooter = () => {
         setshowFooter(true)
     }
 
-    const onSubmit = ()=>{
-        if(!isEnabled){return;}
+    const onSubmit = () => {
+        if (!isEnabled) {return;}
         timeOutCallBack();
         dispatch(findWithCharactersAction(searchTerm));
     }
 
-    const renderRange = ()=>{
-        if(!range){
+    const renderRange = () => {
+        if (!range) {
             return
         }
-        if(range.length===0 && error===""){
-            return(<ResultListComponent range={[]} headerText="Results: "></ResultListComponent>)
+        if (range.length === 0 && error === "") {
+            return (<ResultListComponent range={[]} headerText="Results: "></ResultListComponent>)
         }
-        else{
-            return(<ResultListComponent range={range} headerText="Results: "></ResultListComponent>)
+        else {
+            return (<ResultListComponent range={range} headerText="Results: "></ResultListComponent>)
         }
     }
 
-    const renderError = () =>{
-        if(error && error!==''){
-          return (
-          <ErrorComponent error={error}></ErrorComponent>)
+    const renderError = () => {
+        if (error && error !== '') {
+            return (
+                <ErrorComponent error={error}></ErrorComponent>)
         }
-      }
+    }
 
-    return(
+    return (
         <Container>
             <Content>
                 <Grid>
-                    <Col style={{justifyContent:'center', flexDirection: 'column'}}>
-                    {renderError()}
-                    <Row style={{alignItems: 'center',flexDirection: 'row',  marginBottom:20, marginLeft:5, marginRight:20, marginTop:20}}>
-                        <Col>
-                        <Form>
-                        <Item style={{marginBottom:10}}>
-                         <Input
-                          maxLength={2}
-                           placeholder="Search"
-                            value={searchTerm}
-                             onChangeText={(text)=>{setsearchTerm(text)}}/>
-                         </Item>
-                         
-                        </Form>
-                        </Col>
-                    </Row>
-                    <Row style={{alignItems: 'center',flexDirection: 'column', flex:2}}>
-                        <Col>
-                        <Button disabled={!isEnabled} onPress={onSubmit}>
-                        <Text>Search</Text>
-                      </Button>
-                        </Col>
-                    </Row>
+                    <Col style={{justifyContent: 'center', flexDirection: 'column'}}>
+                        {renderError()}
+                        <Row style={{
+                            alignItems: 'center',
+                            flexDirection: 'row',
+                            marginBottom: 20,
+                            marginLeft: 5,
+                            marginRight: 20,
+                            marginTop: 20
+                        }}>
+                            <Col>
+                                <Form>
+                                    <Item style={{marginBottom: 10}}>
+                                        <Input
+                                            maxLength={2}
+                                            placeholder="Search"
+                                            value={searchTerm}
+                                            onChangeText={(text) => {setsearchTerm(text)}}/>
+                                    </Item>
+
+                                </Form>
+                            </Col>
+                        </Row>
+                        <Row style={{alignItems: 'center', flexDirection: 'column', flex: 2}}>
+                            <Col>
+                                <Button disabled={!isEnabled} onPress={onSubmit}>
+                                    <Text>Search</Text>
+                                </Button>
+                            </Col>
+                        </Row>
                     </Col>
                 </Grid>
             </Content>
-            <Footer  style={showFooter? {height: 300, backgroundColor:"white" } : {height: 0}}>
-            {renderRange()}
-            </Footer>  
+            <Footer style={showFooter ? {height: 300, backgroundColor: "white"} : {height: 0}}>
+                {renderRange()}
+            </Footer>
         </Container>
     )
 }

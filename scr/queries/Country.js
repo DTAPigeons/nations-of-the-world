@@ -1,4 +1,3 @@
-
 export default class Country {
 
     _data;

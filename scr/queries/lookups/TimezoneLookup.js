@@ -17,7 +17,7 @@ export default class TimezoneLookup {
 
         country.timezones.forEach((timezone) => {
 
-            if(!(timezone in this._timezones)) { this._timezones[timezone] = []; }
+            if (!(timezone in this._timezones)) { this._timezones[timezone] = []; }
 
             this._timezones[timezone].push(country.name);
         })
@@ -47,7 +47,7 @@ export default class TimezoneLookup {
 
     _validateTimezone(timezone) {
 
-        if(!(/^UTC(?:[+|-][0-1][0-9](?:\:[0-5][0-9])?)?$/.test(timezone))) {
+        if (!(/^UTC(?:[+|-][0-1][0-9](?:\:[0-5][0-9])?)?$/.test(timezone))) {
             throw new InvalidArgumentError(`${timezone} is not a valid timezone format.`);
         }
     }

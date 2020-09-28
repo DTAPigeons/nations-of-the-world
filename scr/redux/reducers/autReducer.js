@@ -4,8 +4,8 @@ const initialState = {
     extractor: {}
 }
 
-export function autReducer(state = initialState, action){
-    switch(action.type){
+export function autReducer(state = initialState, action) {
+    switch (action.type) {
         case "LOGG_IN_ACTION":
             return {...state, ...action.payload};
         case "LOGG_OUT_ACTION":

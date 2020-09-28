@@ -10,25 +10,25 @@ export default class WordCache {
         for (let i = 0; i < word.length; i++) {
 
             const letter = word.charAt(i).toLowerCase();
-            if(/\s/.test(letter)) { continue; }
+            if (/\s/.test(letter)) { continue; }
 
             this._addToCache(letter, word);
         }
 
-        for(let i = 0; i < word.length - 1; i++) {
+        for (let i = 0; i < word.length - 1; i++) {
             this._addToCache(word.substr(i, 2).toLowerCase(), word);
         }
     }
 
     _addToCache(key, word) {
 
-        if(!(key in this._cache)) {
+        if (!(key in this._cache)) {
             this._cache[key] = [];
         }
 
         const cacheArr = this._cache[key];
 
-        if(cacheArr.includes(word)) { return; }
+        if (cacheArr.includes(word)) { return; }
 
         cacheArr.push(word);
     }
@@ -38,7 +38,7 @@ export default class WordCache {
 
         letters = letters.toLowerCase();
 
-        if(!(letters in this._cache)) {
+        if (!(letters in this._cache)) {
             return [];
         }
 

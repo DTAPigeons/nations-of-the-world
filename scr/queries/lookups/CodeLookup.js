@@ -12,7 +12,7 @@ export default class CodeLookup {
     }
 
     get(countryCode) {
-        if(!(countryCode in this._lookup)) { throw new InvalidArgumentError(`${countryCode} is not a valid three-letter country code`); }
+        if (!(countryCode in this._lookup)) { throw new InvalidArgumentError(`${countryCode} is not a valid three-letter country code`); }
 
         return this._lookup[countryCode];
     }

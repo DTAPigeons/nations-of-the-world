@@ -1,4 +1,3 @@
-
 export default class NearestCountryLookup {
 
     _countryList;
@@ -17,13 +16,13 @@ export default class NearestCountryLookup {
 
         this._countryList.forEach((otherCountry) => {
 
-            if(country === otherCountry) { return; }
+            if (country === otherCountry) { return; }
 
-            if(country.isNeighboursWith(otherCountry)) { return; }
+            if (country.isNeighboursWith(otherCountry)) { return; }
 
             const distance = this._distanceCalculator.calculate(country, otherCountry);
 
-            if(distance < minDistance) {
+            if (distance < minDistance) {
                 minDistance = distance;
                 nearest = otherCountry;
             }

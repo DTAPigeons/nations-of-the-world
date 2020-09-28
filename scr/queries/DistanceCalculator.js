@@ -11,7 +11,7 @@ export default class DistanceCalculator {
 
         const cachedValue = this._cache.get(from.code3, to.code3);
 
-        if(cachedValue) {
+        if (cachedValue) {
             return cachedValue;
         }
 
@@ -36,7 +36,7 @@ export default class DistanceCalculator {
             Math.cos(fromLatitudeRad) * Math.cos(toLatitudeRad) *
             Math.sin(longitudeDiff / 2) * Math.sin(longitudeDiff / 2);
 
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         return MathUtils.roundToDecimals(EarthRadius * c, 2);
     }
