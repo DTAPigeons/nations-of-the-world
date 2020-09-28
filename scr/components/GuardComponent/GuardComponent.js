@@ -4,7 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Login} from '../LoginComponent/LoginComponent';
 import {Layout} from '../LayoutComponent/LayoutComponent';
 import {useDispatch, useSelector} from 'react-redux';
-import {logOutAction} from "../../redux/actions/autActions";
+import {logOutAction} from "../../redux/actions/authActions";
 
 export const Guard = ({navigation, route}) => {
 

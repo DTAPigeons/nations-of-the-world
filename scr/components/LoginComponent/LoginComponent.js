@@ -1,14 +1,14 @@
 import React from 'react';
 import {useState} from 'react';
-import {Container, Grid, Col, Row, Content, Form, Item, Input, Text, Button, H1, H2} from 'native-base';
+import {Container, Grid, Col, Row, Content, Form, Item, Input, Text, Button} from 'native-base';
 import {useDispatch, useSelector} from 'react-redux';
-import {logInAction} from '../../redux/actions/autActions';
+import {logInAction} from '../../redux/actions/authActions';
 import {useButtonTimeOut} from "../../hooks/TimeOutButtonHook";
 import {ErrorComponent} from "../Errors/ErrorComponent";
 
 export const Login = () => {
-    const [userName, setuserName] = useState("");
-    const [password, setpassword] = useState("");
+    const [userName, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
     const [isEnabled, timeOutCallBack, setReEnable] = useButtonTimeOut(true, false);
 
@@ -17,11 +17,11 @@ export const Login = () => {
     const dispatch = useDispatch();
 
     const onUserNameChange = (text) => {
-        setuserName(text);
+        setUsername(text);
     }
 
     const onPasswordChange = (text) => {
-        setpassword(text);
+        setPassword(text);
     }
 
     const onSubmit = () => {
