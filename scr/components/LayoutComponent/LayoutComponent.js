@@ -4,7 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Distance} from '../DistanceComponent/DistanceComponent';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {DistanceComponentWrapper} from "../DistanceComponent/DistanceComponentWraper";
-import {ClosesestNonNeighbourComponentWrapper} from "../ClosesestNonNeighbourComponent/ClosesestNonNeighbourComponentWrapper";
+import {ClosestNonNeighbourComponentWrapper} from "../ClosestNonNeighbourComponent/ClosestNonNeighbourComponentWrapper";
 import {SearchCountriesComponentWrapper} from "../SearchCountriesComponent/SearchCountriesComponentWrapper";
 import {TimeZoneRangeComponentWrapper} from "../TimeZoneRangeComponent/TimeZoneRangeComponentWrapper";
 
@@ -47,7 +47,7 @@ export const Layout = () => {
                 }}
             >
                 <Tab.Screen name="Distance" component={DistanceComponentWrapper}/>
-                <Tab.Screen name="Closest" component={ClosesestNonNeighbourComponentWrapper}/>
+                <Tab.Screen name="Closest" component={ClosestNonNeighbourComponentWrapper}/>
                 <Tab.Screen name="Time Zone" component={TimeZoneRangeComponentWrapper}/>
                 <Tab.Screen name="Search" component={SearchCountriesComponentWrapper}/>
             </Tab.Navigator>

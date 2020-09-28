@@ -7,7 +7,7 @@ import {resetNearestNonNeighbourAction} from "../../redux/actions/resetActions";
 import {useButtonTimeOut} from "../../hooks/TimeOutButtonHook";
 import {ErrorComponent} from "../Errors/ErrorComponent";
 
-export const ClosesestNonNeighbour = () => {
+export const ClosestNonNeighbour = () => {
     const [country, setCountry] = useState("");
 
     const closestCountry = useSelector(state => state.nearestReducer.nearest);

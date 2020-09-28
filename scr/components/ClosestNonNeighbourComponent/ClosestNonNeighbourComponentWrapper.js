@@ -1,8 +1,8 @@
 import React from 'react';
-import {ClosesestNonNeighbour} from './ClosesestNonNeighbourComponent';
+import {ClosestNonNeighbour} from './ClosestNonNeighbourComponent';
 import {createStackNavigator} from '@react-navigation/stack';
 
-export const ClosesestNonNeighbourComponentWrapper = () => {
+export const ClosestNonNeighbourComponentWrapper = () => {
     const Stack = createStackNavigator();
 
     return (
@@ -10,7 +10,7 @@ export const ClosesestNonNeighbourComponentWrapper = () => {
             <Stack.Screen
                 options={{title: 'Closest Non-Neighbour'}}
                 name="Closest"
-                component={ClosesestNonNeighbour}
+                component={ClosestNonNeighbour}
             />
         </Stack.Navigator>
     );
